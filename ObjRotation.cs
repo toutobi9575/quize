@@ -23,11 +23,22 @@ public class ObjRotation : MonoBehaviour
         int v = int.Parse(a[1]);
         switch (a[0])
         {
-            case "num":
+            case "zero":
                 Debug.Log("0");
+                Debug.Log(a[0]);
+                Debug.Log(a[1]);
+                break;
+            case "one":
+                Debug.Log("1");
+                break;
+            case "two":
+                Debug.Log("2");
+                break;
+            case "three":
+                Debug.Log("3");
                 break;
             case "none":
-                Debug.Log("2");
+                Debug.Log("9");
                 break;
         }
         Quaternion AddRot = Quaternion.identity;
