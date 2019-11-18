@@ -1,49 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjRotation : MonoBehaviour
 {
 
-    public SerialHandler _SerialHandler;　//SerialHandler.csの参照
-    Vector3 rotation;
+    public Text answerText;
+    public SerialHandler _SerialHandler;
+    private AnswerDate answerDate;
+    private GameController gameController;
 
-    // Update is called once per frame
+    // Use this for initialization
+    void Start()
+    {
+        gameController = FindObjectOfType<GameController>();
+    }
+
+
+    public void Setup(AnswerDate date)
+    {
+        answerDate = date;
+        answerText.text = answerDate.answerText;
+    }
     void Update()
     {
         objRotation(_SerialHandler.message_);
     }
 
-    void objRotation(string message)
+    public void objRotation(string message)
     {
         string[] a;
+        
 
         a = message.Split("="[0]);
         if (a.Length != 2) return;
         int v = int.Parse(a[1]);
-        switch (a[0])
-        {
-            case "zero":
+ 
+       
+            switch (a[0])
+            {
+                case "zero":
+                gameController.AnswerButtonClicked(answerDate.isCorrect);
                 Debug.Log("0");
-                Debug.Log(a[0]);
-                Debug.Log(a[1]);
                 break;
-            case "one":
+                case "one":
+                gameController.AnswerButtonClicked(answerDate.isCorrect);
                 Debug.Log("1");
                 break;
-            case "two":
+                case "two":
+                gameController.AnswerButtonClicked(answerDate.isCorrect);
                 Debug.Log("2");
                 break;
-            case "three":
+                case "three":
+                gameController.AnswerButtonClicked(answerDate.isCorrect);
                 Debug.Log("3");
                 break;
             case "none":
                 Debug.Log("9");
                 break;
         }
-        Quaternion AddRot = Quaternion.identity;
-        AddRot.eulerAngles = new Vector3(-rotation.x, 0, -rotation.y);
 
-        transform.rotation = AddRot;
-    }
+        }
+    
 }
+
+
